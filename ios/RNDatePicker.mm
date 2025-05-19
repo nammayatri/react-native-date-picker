@@ -80,6 +80,7 @@ NSDate* iso8601StringToNSDate(const std::string &iso8601String) {
 {
     if ((self = [super initWithFrame:frame])) {
         [self setup];
+        [self addTarget:self action:@selector(handleDatePickerTap) forControlEvents:UIControlEventEditingDidBegin];
         [self addTarget:self action:@selector(didChange)
        forControlEvents:UIControlEventValueChanged];
         _reactMinuteInterval = 1;
@@ -88,6 +89,10 @@ NSDate* iso8601StringToNSDate(const std::string &iso8601String) {
 }
 #endif
 
+
+- (void)handleDatePickerTap  {
+    [self resignFirstResponder];
+}
 
 RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
